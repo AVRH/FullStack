@@ -1,32 +1,64 @@
-.App {
-  text-align: center;
+#errorMessage{
+  background-color: green;
+  border: 2px solid yellow;
+  font-size: larger;
+  font-style: bold;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.personList {
+  width: 50%;
+  float: center;
+  background-color:rgba(168,208,230,0.5);
+  border: 2px solid rgba(168,208,230,0.8);
+  border-radius: 15px;
+  padding: 1em;
+  font-family: "Georgia",serif;
+  font-size: 1.5rem;
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.addForm {
+  width: 25%;
+  float: right;
+  /*background-color: #A8D0E6;*/
+  background-color:rgba(168,208,230,0.35);
+  border-radius: 15px;
+  padding: 1em;
+}
+.person{
+  border-bottom: 1px dotted black;
+}
+.searchForm{
+  width: 25%;
+  height: 100%;
+  float: left;
+  background-color:rgba(168,208,230,0.35);
+  border-radius: 15px;
+  padding: 1em;
+
+}
+.flex-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color:rgba(248,233,161,0.5);
+}
+.flex-container > div{
+  margin: 25px;
+
+}
+.sectionHeader{
+  font-size: 2rem;
+  padding-bottom: 1.5em;
+  text-align: center;
+  color: #24305E;
+  text-decoration:underline;
+  font-family: "Georgia", serif;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#delete{
+  background-color: #F76C6C;
+  text-align:center;
+  padding: 5px;
+  float: right;
+  color:white;
+  border-radius: 50%;
 }
