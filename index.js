@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 let persons = [
   {
@@ -29,12 +32,48 @@ app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
 
+app.get('/api/persons/:id', (req, res) => {
+  const id = Number(req.params.id)
+  const person = persons.find(p => p.id === id)
+  if(person){
+    res.json(person)
+  }else{
+    res.status(404).end()
+  }
+})
+
 app.get('/info', (req,res) => {
   const date = new Date()
   const dateString = `<p>${date}</p>`
   const titleString = `<p>Puhelinluettelossa on ${persons.length} numeroa </p>`
 
   res.send(titleString+dateString)
+
+})
+
+app.delete('/api/persons/:id', (req, res) => {
+  const id = Number(req.params.id)
+  persons = persons.filter(p => p.id !== id)
+  res.status(204).end()
+})
+
+app.post('/api/persons', (req,res) => {
+  const body = req.body
+
+  if(body.name === undefined || body.number === undefined){
+    return res.status(400).json({error: 'Name or number is missing'})
+  } 
+  if(persons.findIndex(p => p.name === body.name) !== -1){
+      return res.status(400).json({ error: 'Name is already in the directory'})
+  } 
+
+  const person = {
+    id: Math.floor(Math.random()*Math.floor(100)),
+    name: body.name,
+    number: body.number
+  }
+  persons = persons.concat(person)
+  res.json(person)
 
 })
 
