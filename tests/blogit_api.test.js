@@ -40,7 +40,13 @@ test('There are six blogs', async () => {
     const response = await api.get('/api/blogs')
     expect(response.body.length).toBe(initialBlogs.length)
 })
+test('blog identifier is id and not _id', async () => {
+  const response = await api.get('/api/blogs')
+  expect(response.body[0]).toHaveProperty('id')
+
+})
 
 afterAll(() => {
-  mongoose.connection.close()
+    mongoose.connection.close()
 })
+  
