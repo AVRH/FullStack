@@ -46,6 +46,50 @@ test('blog identifier is id and not _id', async () => {
 
 })
 
+test('A new blog can be added', async () => {
+  const newBlog = {
+    "title": "New React is now available",
+    "author": "Katti Matikainen",
+    "url": "www.frontendqueen.com",
+    "likes": 1
+  }
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+  
+  const response = await api.get('/api/blogs')
+  const blogs = response.body.map(blog => blog.title)
+
+  expect(response.body.length).toBe(initialBlogs.length +1)
+  expect(blogs).toContain("New React is now available")
+
+})
+
+test('If amount of likes is not given, the amount is set to 0',async () => {
+  const newBlog = {
+    "title": "New React is now available",
+    "author": "Katti Matikainen",
+    "url": "www.frontendqueen.com",
+  }
+  const response = await api.post('/api/blogs').send(newBlog)
+  expect(response.body.likes).toBe(0)
+})
+
+test('If blog is added without required fields, the error is handled correctly', async () => {
+  const newBlog = {
+    "author": "Katti Matikainen",
+    "url": "www.frontendqueen.com",
+    "likes": 200
+  }
+  await api
+  .post('/api/blogs')
+  .send(newBlog)
+  .expect(400)
+
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
