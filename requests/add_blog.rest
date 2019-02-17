@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Tests with supertest",
+    "author": "Jane Doe",
+    "url": "www.testblog.com",
+    "likes": 200,
+    "userId": "5a8fdf36f433b11610f2ecb4"
+}
