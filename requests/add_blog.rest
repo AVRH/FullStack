@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjVjNjk0MjY1NTU2YjRmMTE1YzczZGFhMyIsImlhdCI6MTU1MDQ3Njk3OH0.ee8tzArY2uZjdvzKgfE0r03IyK05mn9R9Mq8kaPk7MI
 
 {
-    "title": "Tests with supertest",
+    "title": "Web token authorization for dummies",
     "author": "Jane Doe",
     "url": "www.testblog.com",
-    "likes": 200,
-    "userId": "5a8fdf36f433b11610f2ecb4"
+    "likes": 200
 }
